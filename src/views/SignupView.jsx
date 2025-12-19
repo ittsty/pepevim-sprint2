@@ -65,9 +65,9 @@ export const SingupView = () => {
           ></input>
           <button
             type="submit"
-            className="bg-[#A71B79] text-white rounded-full py-2 hover:opacity-70 hover:cursor-pointer duration-150 mt-4"
+            className="bg-[#CB5585] text-white rounded-full py-2 hover:opacity-70 hover:cursor-pointer duration-150 mt-4"
           >
-            Sign up
+            Create account
           </button>
 
           <button

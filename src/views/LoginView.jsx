@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import colddcereal from "../assets/colddcereal.png";
 
 function LoginView() {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -10,9 +11,9 @@ function LoginView() {
   return (
     <div className="flex  min-h-screen ">
       <img
-        src="https://i.pinimg.com/736x/73/d3/fb/73d3fb41823716f69cc59695e6a91e81.jpg"
+        src={colddcereal}
         alt=""
-        className="hidden md:block w-1/2 h-screen object-cover "
+        className="hidden md:block w-1/2 h-screen object-cover bg-[#A7CBCB]"
       />
       <div className="flex flex-col   items-center justify-center w-full">
         <h1 className="text-4xl ">VELVÉ</h1>
@@ -60,7 +61,7 @@ function LoginView() {
           <div className="flex flex-col gap-2 pt-4">
             <button
               type="submit"
-              className="bg-[#A71B79] text-white rounded-full py-2 hover:opacity-70 hover:cursor-pointer duration-150"
+              className="bg-[#CB5585] text-white rounded-full py-2 hover:opacity-70 hover:cursor-pointer duration-150"
             >
               Login
             </button>
