@@ -8,7 +8,7 @@ export const Contact = () => {
             <h3 className='text-5xl font-extralight mb-6'>We'd Love to Hear From You</h3>
             <p className='text-gray-600 mb-12'>
                 We're here to answer any question
-                you have about our pawsome pet apparel.
+                you have about our pawwsome pet apparel.
             </p>
 
         <form className="space-y-6 text-left">
