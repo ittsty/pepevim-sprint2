@@ -1,6 +1,6 @@
 export default function PaymentView() {
-    return (
-              <div>
+  return (
+    <div>
       <h1 className="text-8xl font-bold p-4">Your Cart</h1>
       <div className="flex gap-4">
         <div className=" w-2/3 p-8">
@@ -103,9 +103,7 @@ export default function PaymentView() {
               <div>Estimated total</div>
               <div>5,000.00 B</div>
             </div>
-            <button className="border-2 rounded-2xl w-4/5">
-              Check Out
-            </button>
+            <button className="border-2 rounded-2xl w-4/5">Check Out</button>
             <div className="flex justify-between w-full gap-2">
               <div className="border-2 flex items-center">Visa</div>
               <div className="border-2 flex items-center">master card</div>
@@ -116,6 +114,6 @@ export default function PaymentView() {
           </div>
         </div>
       </div>
-        </div>
-    )
+    </div>
+  );
 }
