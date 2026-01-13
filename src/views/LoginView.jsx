@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { SingupView } from "./SignupView";
 
 function LoginView() {
-  const navigate = useNavigate();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const handleShowPassword = () => {
     setIsShowPassword(!isShowPassword);
@@ -15,7 +14,7 @@ function LoginView() {
     email: "",
     password: "",
   });
-  const hdlchange = (e) => {
+  const hdlChange = (e) => {
     setValue({
       ...value,
       [e.target.name]: e.target.value,
@@ -49,7 +48,7 @@ function LoginView() {
               name="email"
               required
               className=" w-full py-2 pr-10 outline-none border-none bg-transparent"
-              onChange={(e) => hdlchange(e)}
+              onChange={(e) => hdlChange(e)}
             />
           </div>
 
@@ -63,7 +62,7 @@ function LoginView() {
               name="password"
               required
               className="w-full py-2 pr-10 outline-none border-none bg-transparent"
-              onChange={(e) => hdlchange(e)}
+              onChange={(e) => hdlChange(e)}
             />
 
             <button
