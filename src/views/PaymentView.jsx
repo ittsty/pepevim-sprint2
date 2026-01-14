@@ -1,7 +1,13 @@
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import QuantityButton from "@/components/QuantityButton";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function PaymentView() {
+  const navigate = useNavigate();
+  const handleCheckOut = () => {
+    navigate("/checkout");
+  };
+
   return (
     <div>
       <h1 className="text-8xl font-bold p-4">Your Cart</h1>
@@ -100,9 +106,13 @@ export default function PaymentView() {
               <div>Estimated total</div>
               <div>5,000.00 B</div>
             </div>
-            <button className="bg-[#E09D00] rounded-2xl w-4/5 text-white p-2">
+            <button
+              onClick={handleCheckOut}
+              className="bg-[#E09D00] rounded-2xl w-4/5 p-2 text-white font-bold text-xl hover:bg-[#f0a800]"
+            >
               Check Out
             </button>
+
             <div className="flex justify-between w-full gap-2">
               <div className="border-2">
                 <img
@@ -131,7 +141,7 @@ export default function PaymentView() {
               <div className="border-2 bg-white">
                 <img
                   className="h-10"
-                  src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX"
+                  src="https://images.seeklogo.com/logo-png/36/2/truemoney-wallet-logo-png_seeklogo-367826.png"
                 />
               </div>
             </div>

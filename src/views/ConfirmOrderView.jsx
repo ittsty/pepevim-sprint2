@@ -1,83 +1,72 @@
+import CountrySelector from "@/components/CountrySelect";
+
 export default function ConfirmOrderView() {
   return (
     <div className="grid grid-cols-2 p-9">
       <div className="border-r-2 border-black flex flex-col gap-6 p-8">
         <div className="flex flex-col p-2">
           <div className="text-4xl">Delivery</div>
-          <div className="w-full p-2 rounded-sm">
-            Country/Region
-            <div>
-              <select className="border w-full rounded-sm">
-                <option>Thailand</option>
-                {/* <option>Brunei</option>
-                  <option>Cambodia</option>
-                  <option>Indonesia</option>
-                  <option>Lao</option>
-                  <option>Malaysia</option>
-                  <option>Myanmar</option>
-                  <option>Philippines</option>
-                  <option>Singapore</option>
-                  <option>Timor-Leste</option>
-                  <option>Vietnam</option> */}
-              </select>
-            </div>
+          <div className="p-2 ">
+            <CountrySelector />
           </div>
           <div className="grid grid-cols-2 gap-2 p-2">
             <input
               type="text"
               placeholder="First-name"
-              className="border rounded-sm"
+              className="border rounded-sm shadow-sm"
             ></input>
             <input
               type="text"
               placeholder="Last-name"
-              className="border rounded-sm"
+              className="border rounded-sm shadow-sm"
             ></input>
           </div>
           <div className="p-2">
             <input
               type="text"
               placeholder="Address"
-              className="border w-full rounded-sm"
+              className="border w-full rounded-sm shadow-sm"
             ></input>
           </div>
           <div className="p-2">
             <input
               type="text"
               placeholder="Apartment, suite,etc, (optional)"
-              className="border w-full rounded-sm"
+              className="border w-full rounded-sm shadow-sm"
             ></input>
           </div>
           <div className="grid grid-cols-3 p-2 gap-2">
-            <input type="text" placeholder="City" className="border"></input>
-            <select className="border rounded-sm">
-              <option>Bangkok</option>
-              <option>Nonthaburi</option>
-              <option>Nakhon Pathom</option>
-              <option>Samut Prakan</option>
-              <option>Samut Sakhon</option>
-            </select>
+            <input
+              type="text"
+              placeholder="City"
+              className="border shadow-sm rounded-sm"
+            ></input>
+            <input
+              type="text"
+              placeholder="District"
+              className="border shadow-sm rounded-sm"
+            ></input>
             <input
               type="text"
               placeholder="Postal code"
-              className="border rounded-sm"
+              className="border rounded-sm shadow-sm"
             ></input>
           </div>
           <div className="p-2">
             <input
               type="tel"
               placeholder="Phone"
-              className="border w-full rounded-sm"
+              className="border w-full rounded-sm shadow-sm"
             ></input>
           </div>
         </div>
         <div className="flex flex-col p-2 gap-2">
           <div className="text-4xl">Payment</div>
           <div>All transactions are secure and encrypted.</div>
-          <div className="flex gap-2">
+          <div className="flex gap-4">
             <div>
               <img
-                src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX=w600-h300-pc0xffffff-pd"
+                src="https://images.seeklogo.com/logo-png/36/2/truemoney-wallet-logo-png_seeklogo-367826.png"
                 className="h-20 hover:border-2"
               ></img>
             </div>
@@ -88,11 +77,11 @@ export default function ConfirmOrderView() {
               ></img>
             </div>
           </div>
-          <div className="p-4 rounded-sm bg-gray-200">
+          <div className="p-4 rounded-sm bg-gray-200 shadow-sm">
             <input
               type="tel"
               placeholder="Phone number"
-              className="border bg-white w-full rounded-sm"
+              className="border bg-white w-full rounded-sm shadow-sm"
             ></input>
           </div>
         </div>
