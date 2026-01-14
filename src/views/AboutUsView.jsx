@@ -2,7 +2,7 @@ import React from 'react'
 
 export const AboutUsView = () => {
   return (
-    <section className='flex h-full w-full items-center justify-center bg-primary'>
+    <section className='flex min-h-screen w-full items-center justify-center bg-primary'>
         <div className='text-center'>
            <h1 className=' text-white font-light text-8xl'>
             About Us

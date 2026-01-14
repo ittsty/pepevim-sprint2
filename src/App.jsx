@@ -1,10 +1,12 @@
+import React from 'react';
 import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <main className="relative w-full min-h-screen">
+      {/* ตรงนี้จะดึงหน้า About หรือ Contact มาแสดงตาม URL */}
       <Outlet />
-    </div>
+    </main>
   );
 }
 
