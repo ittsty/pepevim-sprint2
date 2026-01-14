@@ -22,71 +22,81 @@ import {
 } from "@/components/ui/card";
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", clothes: 286, cosmetics: 180 },
+  { month: "February", clothes: 305, cosmetics: 100 },
+  { month: "March", clothes: 237, cosmetics: 120 },
+  { month: "April", clothes: 173, cosmetics: 90 },
+  { month: "May", clothes: 209, cosmetics: 130 },
+  { month: "June", clothes: 214, cosmetics: 140 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  clothes: {
+    label: "Clothes",
     color: "#A71B79",
   },
-  mobile: {
-    label: "Mobile",
+  cosmetics: {
+    label: "Cosmetics",
     color: "#E0C013",
   },
 };
 
 const chartData2 = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+  { browser: "collection1", collections: 275, fill: "var(--color-collection1)" },
+  { browser: "collection2", collections: 200, fill: "var(--color-collection2)" },
+  { browser: "collection3", collections: 187, fill: "var(--color-collection3)" },
+  { browser: "collection4", collections: 173, fill: "var(--color-collection4)" },
+  { browser: "collection5", collections: 90, fill: "var(--color-collection5)" },
+  { browser: "collection6", collections: 45, fill: "var(--color-collection6)" },
+  { browser: "collection7", collections: 45, fill: "var(--color-collection7)" },
 ];
 const chartConfig2 = {
-  visitors: {
-    label: "Visitors",
+  collections: {
+    label: "Collections",
   },
-  chrome: {
-    label: "Chrome",
+  collection1: {
+    label: "collection1",
     color: "var(--chart-1)",
   },
-  safari: {
-    label: "Safari",
+  collection2: {
+    label: "collection2",
     color: "#5AC8DA",
   },
-  firefox: {
-    label: "Firefox",
+  collection3: {
+    label: "collection3",
     color: "#A71B79",
   },
-  edge: {
-    label: "Edge",
+  collection4: {
+    label: "collection4",
     color: "#E0C013",
   },
-  other: {
-    label: "Other",
-    color: "var(--chart-5)",
+  collection5: {
+    label: "collection5",
+    color: "var(--chart-2)",
+  },
+   collection6: {
+    label: "collection6",
+    color: "var(--chart-3)",
+  },
+   collection7: {
+    label: "collection7",
+    color: "var(--chart-4)",
   },
 };
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
 const chartData3 = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 273 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { month: "January", clothes: 186 },
+  { month: "February", clothes: 305 },
+  { month: "March", clothes: 237 },
+  { month: "April", clothes: 273 },
+  { month: "May", clothes: 209 },
+  { month: "June", clothes: 214 },
 ];
 const chartConfig3 = {
-  desktop: {
-    label: "Desktop",
+  clothes: {
+    label: "Clothes",
     color: "#A71B79",
   },
 };
@@ -94,8 +104,8 @@ const chartConfig3 = {
 export function DashBoardView() {
   return (
     <ChartContainer config={chartConfig} className="min-h-50 w-full">
-      <h1 className="text-xl md:text-2xl font-bold text-center md:text-left">
-        VELVE Analysis Dashboard
+      <h1 className="text-xl md:text-2xl font-bold text-center md:text-left px-4 py-4">
+        Sales Order Summary
       </h1>
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
@@ -108,13 +118,13 @@ export function DashBoardView() {
         />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+        <Bar dataKey="clothes" fill="var(--color-clothes)" radius={4} />
+        <Bar dataKey="cosmetics" fill="var(--color-cosmetics)" radius={4} />
       </BarChart>
 
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
-          <CardTitle>Pie Chart - Label List</CardTitle>
+          <CardTitle>Pie Chart - Collections Trends</CardTitle>
           <CardDescription>January - June 2025</CardDescription>
         </CardHeader>
         <CardContent className="flex-1 pb-0">
@@ -124,9 +134,9 @@ export function DashBoardView() {
           >
             <PieChart>
               <ChartTooltip
-                content={<ChartTooltipContent nameKey="visitors" hideLabel />}
+                content={<ChartTooltipContent nameKey="collections" hideLabel />}
               />
-              <Pie data={chartData2} dataKey="visitors">
+              <Pie data={chartData2} dataKey="collections">
                 <LabelList
                   dataKey="browser"
                   className="fill-background"
@@ -143,16 +153,16 @@ export function DashBoardView() {
             Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
           </div>
           <div className="text-muted-foreground leading-none">
-            Showing total visitors for the last 6 months
+            Showing total collections orders for the last 6 months
           </div>
         </CardFooter>
       </Card>
 
       <Card>
         <CardHeader className="items-center">
-          <CardTitle>Radar Chart - Dots</CardTitle>
+          <CardTitle>Radar Chart - Clothes</CardTitle>
           <CardDescription>
-            Showing total visitors for the last 6 months
+            January - June 2025
           </CardDescription>
         </CardHeader>
         <CardContent className="pb-0">
@@ -165,8 +175,8 @@ export function DashBoardView() {
               <PolarAngleAxis dataKey="month" />
               <PolarGrid />
               <Radar
-                dataKey="desktop"
-                fill="var(--color-desktop)"
+                dataKey="clothes"
+                fill="var(--color-clothes)"
                 fillOpacity={0.6}
                 dot={{
                   r: 4,
@@ -181,7 +191,7 @@ export function DashBoardView() {
             Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
           </div>
           <div className="text-muted-foreground flex items-center gap-2 leading-none">
-            January - June 2025
+            Showing total clothes orders for the last 6 months
           </div>
         </CardFooter>
       </Card>
@@ -190,4 +200,4 @@ export function DashBoardView() {
     </ChartContainer>
   );
 }
-export default DashBoard;
+// export default DashBoard;

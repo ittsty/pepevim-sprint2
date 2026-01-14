@@ -14,6 +14,7 @@ import CollectionView from "./views/Collection/CollectionView.jsx";
 import ProductView from "./views/Collection/ProductView.jsx";
 import ProductDetailView from "./views/Collection/ProductDetailView.jsx";
 import ConfirmOrderView from "./views/ConfirmOrderView.jsx";
+import { DashBoardView } from "./views/DashBoardView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
           { path: "collection", element: <CollectionView /> },
           { path: "collection/:id", element: <ProductView /> },
           { path: "product/:id", element: <ProductDetailView /> },
+           { path: "dashboard", element: <DashBoardView /> },
           { path: "about", element: <AboutUsView /> },
           { path: "contact", element: <ContactView /> },
           { path: "login", element: <LoginView /> },

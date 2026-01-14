@@ -30,6 +30,17 @@ export default function Navbar() {
             COLLECTION
           </NavLink>
         </li>
+          <li>
+          <NavLink
+            to="/dashboard"
+            end
+            className={({ isActive }) =>
+              "p-6" + (isActive ? " navlinkActive" : "")
+            }
+          >
+            BEST SELLER
+          </NavLink>
+        </li>
         <li>
           <NavLink
             to="/about"
