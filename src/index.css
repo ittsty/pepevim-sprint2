@@ -137,9 +137,10 @@
   }
 
   body {
-  background-color: transparent !important;
+    @apply bg-background text-foreground;
+  }
 }
-}
+
 @layer base {
   :root {
     --chart-1: oklch(0.646 0.222 41.116);
@@ -157,22 +158,3 @@
     --chart-5: oklch(0.645 0.246 16.439);
   }
 }
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  min-height: 100vh;
-  width: 100%;
-}
-
-/* ล้างค่าขยะที่ระบบ Theme ตัวเก่าตั้งไว้ */
-:root {
-  --background: transparent !important;
-  --color-background: transparent !important;
-}
-
-
-
-
-
