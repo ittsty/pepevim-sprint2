@@ -4,7 +4,7 @@ import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import Sigup1 from "../assets/img/sigup1.png";
 import Sigup2 from "../assets/img/sigup2.png";
 import { useNavigate } from "react-router";
-import { register } from "../services/auth";
+import { register, login } from "../services/auth";
 
 export const SingupView = () => {
   const navigate = useNavigate();
@@ -70,18 +70,23 @@ export const SingupView = () => {
       return;
     }
 
-    navigate("/login");
+    await login({
+      email: formData.email,
+      password: formData.password,
+    });
+
+    navigate("/");
   };
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-3">
+    <div className="w-full min-h-[calc(100vh-72px)] md:grid md:grid-cols-3 flex items-center">
       {/* LEFT IMAGE */}
-      <div className="h-screen w-full overflow-hidden">
+      <div className="hidden md:block h-screen w-full overflow-hidden">
         <img src={Sigup1} alt="" className="w-full h-full object-cover" />
       </div>
 
       {/* FORM */}
-      <div className="flex flex-col items-center justify-center w-full">
+      <div className=" flex flex-col items-center justify-center w-full ">
         <h1 className="text-4xl pb-4">Sign up</h1>
 
         <form
@@ -211,7 +216,7 @@ export const SingupView = () => {
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="h-screen w-full overflow-hidden">
+      <div className="hidden md:block h-screen w-full overflow-hidden">
         <img src={Sigup2} alt="" className="w-full h-full object-cover" />
       </div>
     </div>

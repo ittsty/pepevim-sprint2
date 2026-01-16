@@ -19,7 +19,7 @@ export const register = async ({
       confirm_password,
     };
 
-    const res = await axios.post(`${API_URL}/api/auth/signup`, payload);
+    const res = await axios.post(`${API_URL}/api/v2/user`, payload);
 
     return {
       success: true,
@@ -45,7 +45,7 @@ export const login = async ({ email, password }) => {
     const payload = { email, password };
     console.log("🚀 ~ login ~ payload:", payload);
 
-    const res = await axios.post(`${API_URL}/api/auth/login`, payload, {
+    const res = await axios.post(`${API_URL}/api/v2/auth/login`, payload, {
       withCredentials: true,
     });
 
@@ -68,4 +68,19 @@ export const login = async ({ email, password }) => {
   }
 };
 
+export const logout = async () => {
+  try {
+    await axios.post(
+      `${API_URL}/api/v2/auth/logout`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
 
+    return { success: true };
+  } catch (error) {
+    console.log("logout error", error);
+    return { success: false };
+  }
+};
