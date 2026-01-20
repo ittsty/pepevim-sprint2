@@ -1,19 +1,13 @@
-import { env } from "../env";
-import React from "react";
-import { logout } from "../services/auth";
-
-const API_URL = env.API_URL;
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const Testpang = () => {
-  const hldLogout = async () => {
-    await logout();
-  };
-
+  const { hdlLogout } = useAuth();
   return (
     <div>
       <button
         className="border-b-2 hover:cursor-pointer shadow-2xs bg-amber-200"
-        onClick={hldLogout}
+        onClick={hdlLogout}
       >
         logout
       </button>

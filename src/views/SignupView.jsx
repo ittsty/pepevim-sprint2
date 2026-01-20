@@ -6,7 +6,7 @@ import Sigup2 from "../assets/img/sigup2.png";
 import { useNavigate } from "react-router";
 import { register, login } from "../services/auth";
 
-export const SingupView = () => {
+export const SignupView = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState();
   const [value, setValue] = useState({
