@@ -15,6 +15,7 @@ import ProductView from "./views/Collection/ProductView.jsx";
 import ProductDetailView from "./views/Collection/ProductDetailView.jsx";
 import ConfirmOrderView from "./views/ConfirmOrderView.jsx";
 import DashBoardView from "./views/DashBoardView.jsx";
+import Testpang from "./views/Testpang.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,9 @@ const router = createBrowserRouter([
           { path: "signup", element: <SingupView /> },
           { path: "payment", element: <PaymentView /> },
           { path: "order", element: <ConfirmOrderView /> },
-          { path: "dashboard", element: <DashBoardView/> },
+          { path: "dashboard", element: <DashBoardView /> },
           { path: "checkout", element: <ConfirmOrderView /> },
+          { path: "pang-test", element: <Testpang /> },
         ],
       },
     ],

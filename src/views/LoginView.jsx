@@ -3,8 +3,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Dog from "../assets/img/dog.png";
+import { login } from "../services/auth";
+import { useNavigate } from "react-router";
 
 function LoginView() {
+  const navigate = useNavigate();
   const [value, setValue] = useState({
     email: "",
     password: "",
@@ -28,18 +31,26 @@ function LoginView() {
     setErrors({ password: "", form: "" });
   };
 
-  const hdlSubmit = (e) => {
+  const hdlSubmit = async (e) => {
     e.preventDefault();
 
     if (value.password.length < 8 || value.password.length > 64) {
       setErrors({
-        password: "Password must be 8–64 characters",
-        form: "",
+        password: "Password must be 8-64 characters",
       });
       return;
     }
 
-    console.log("payload:", value);
+    //TO DO call Api
+    const result = await login(value);
+
+    if (!result.success) {
+      setErrors({
+        form: "อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง",
+      });
+      return;
+    }
+    navigate("/");
   };
 
   return (
@@ -125,14 +136,15 @@ function LoginView() {
           <div className="flex flex-col gap-2 pt-4">
             <button
               type="submit"
-              className="bg-[#CB5585] text-white rounded-full py-2 hover:opacity-70 duration-150"
+              className="bg-[#CB5585] text-white rounded-full py-2 hover:opacity-70 duration-150
+              hover:cursor-pointer"
             >
               Login
             </button>
 
             <button
               type="button"
-              className="flex items-center justify-center gap-2 bg-[#E8E8E8] rounded-full py-2 hover:opacity-70"
+              className="flex items-center justify-center gap-2 bg-[#E8E8E8] rounded-full py-2 hover:opacity-70 hover:cursor-pointer"
             >
               <FcGoogle size={20} />
               <span>Login with Google</span>
