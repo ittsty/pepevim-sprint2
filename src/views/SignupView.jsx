@@ -203,7 +203,7 @@ export const SignupView = () => {
             Create account
           </button>
 
-          {/* GOOGLE */}
+          {/* GOOGLE
           <button
             type="button"
             className="flex items-center justify-center gap-2 bg-[#E8E8E8] rounded-full py-2 mt-4 hover:opacity-70
@@ -211,7 +211,7 @@ export const SignupView = () => {
           >
             <FcGoogle size={20} />
             <span>Sign up with Google</span>
-          </button>
+          </button> */}
         </form>
       </div>
 

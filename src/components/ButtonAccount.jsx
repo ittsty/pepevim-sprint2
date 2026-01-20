@@ -19,37 +19,29 @@ const ButtonAccount = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div>
-      <button
+    <div className="grid grid-cols-2">
+      <div
+        role="button"
         onMouseEnter={hdlHover}
         onMouseLeave={hdlLeave}
         className="hidden md:block min-w-10"
       >
-        <div className="relative">
-          <button>
-            <NavLink
-              to={user ? "/profile" : "/login"}
-              className=" h-full aspect-square text-white p-1 ml-auto md:ml-0"
-            >
-              {user ? (
-                <span>{user?.first_name}</span>
-              ) : (
-                <FaUser className="w-[95%] h-[95%]" />
-              )}
-            </NavLink>
-          </button>
-          {isOpenDropdown && (
-            <div className="absolute top-6 right-0 bg-white p-2 rounded-md shadow-md min-w-10">
-              <button onClick={hdlLogout} className="text-red-600 text-nowrap">
-                log out
-              </button>
-            </div>
-          )}
-        </div>
-      </button>
+        <button className=" w-5">
+          <NavLink
+            to={user ? "/profile" : "/login"}
+            className=" h-full aspect-square text-white p-1 ml-auto md:ml-0 max-w-1.5"
+          >
+            {user ? (
+              <span className="">{user?.first_name}</span>
+            ) : (
+              <FaUser className="w-[95%] h-[95%]" />
+            )}
+          </NavLink>
+        </button>
+      </div>
 
       {user ? (
-        <button type="button" className="md:hidden" onClick={hdlToggle}>
+        <div type="button" className="md:hidden" onClick={hdlToggle}>
           <div className="relative">
             <FaUser className="w-[95%] h-[95%]" />
             {isOpenDropdown && (
@@ -68,7 +60,7 @@ const ButtonAccount = () => {
               </div>
             )}
           </div>
-        </button>
+        </div>
       ) : (
         <button type="button" className="md:hidden">
           <NavLink to="/login">

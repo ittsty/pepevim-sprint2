@@ -150,14 +150,14 @@ function LoginView() {
             >
               Login
             </button>
-
+{/* 
             <button
               type="button"
               className="flex items-center justify-center gap-2 bg-[#E8E8E8] rounded-full py-2 hover:opacity-70 hover:cursor-pointer"
             >
               <FcGoogle size={20} />
               <span>Login with Google</span>
-            </button>
+            </button> */}
           </div>
         </form>
 
