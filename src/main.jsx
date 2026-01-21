@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeView from "./views/HomeView.jsx";
 import { AboutUsView } from "./views/AboutUsView.jsx";
 import Layout from "./views/Layout.jsx";
-import { SingupView } from "./views/SignupView.jsx";
+import { SignupView } from "./views/SignupView.jsx";
 import PaymentView from "./views/PaymentView.jsx";
 import LoginView from "./views/LoginView.jsx";
 import { ContactView } from "./views/ContactView.jsx";
@@ -16,6 +16,10 @@ import ProductDetailView from "./views/Collection/ProductDetailView.jsx";
 import ConfirmOrderView from "./views/ConfirmOrderView.jsx";
 import DashBoardView from "./views/DashBoardView.jsx";
 import Testpang from "./views/Testpang.jsx";
+import CartPage from "./views/CartPage.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
+import ProtectRoute from "./components/ProtectRoute.jsx";
+import GuestRoute from "./components/GuestRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,17 +38,39 @@ const router = createBrowserRouter([
           { path: "/", element: <HomeView /> },
           { path: "collection", element: <CollectionView /> },
           { path: "collection/:id", element: <ProductView /> },
-          { path: "product/:id", element: <ProductDetailView /> },
+          { path: "products/:id", element: <ProductDetailView /> },
           { path: "dashboard", element: <DashBoardView /> },
           { path: "about", element: <AboutUsView /> },
           { path: "contact", element: <ContactView /> },
-          { path: "login", element: <LoginView /> },
-          { path: "signup", element: <SingupView /> },
+          {
+            path: "login",
+            element: (
+              <GuestRoute>
+                <LoginView />
+              </GuestRoute>
+            ),
+          },
+          {
+            path: "signup",
+            element: (
+              <GuestRoute>
+                <SignupView />
+              </GuestRoute>
+            ),
+          },
           { path: "payment", element: <PaymentView /> },
           { path: "order", element: <ConfirmOrderView /> },
           { path: "dashboard", element: <DashBoardView /> },
           { path: "checkout", element: <ConfirmOrderView /> },
-          { path: "pang-test", element: <Testpang /> },
+          { path: "carttest", element: <CartPage /> },
+          {
+            path: "pang-test",
+            element: (
+              <ProtectRoute>
+                <Testpang />
+              </ProtectRoute>
+            ),
+          },
         ],
       },
     ],
@@ -52,5 +78,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <StrictMode>
+    <AuthProvider>
+      <RouterProvider router={router} />,
+    </AuthProvider>
+  </StrictMode>,
 );

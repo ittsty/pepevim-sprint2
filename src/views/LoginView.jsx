@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import Dog from "../assets/img/dog.png";
 import { login } from "../services/auth";
 import { useNavigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 function LoginView() {
+  const { checkAuth } = useAuth();
   const navigate = useNavigate();
   const [value, setValue] = useState({
     email: "",
@@ -48,6 +50,13 @@ function LoginView() {
       setErrors({
         form: "อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง",
       });
+      return;
+    }
+    const user = await checkAuth();
+
+    if (user.role === "admin") {
+      console.log("is admin");
+      navigate("/dashboard");
       return;
     }
     navigate("/");
