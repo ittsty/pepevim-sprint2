@@ -2,18 +2,27 @@ import { env } from "@/env";
 import axios from "axios";
 
 const API_URL = env.API_URL;
+
 export const getUser = async () => {
   try {
     const res = await axios.get(`${API_URL}/api/v2/auth/me`, {
       withCredentials: true,
     });
-    return {
-      data: res.data,
-      success: true,
-    };
-    
+    return { data: res.data, success: true };
   } catch (error) {
     console.log("get user error", error);
+    return { success: false };
+  }
+};
+
+export const updateProfile = async (userId, payload) => {
+  try {
+    const res = await axios.patch(`${API_URL}/api/v2/user/${userId}`, payload, {
+      withCredentials: true,
+    });
+    return { data: res.data, success: true };
+  } catch (error) {
+    console.log("update profile error", error);
     return { success: false };
   }
 };

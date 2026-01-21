@@ -20,6 +20,7 @@ import CartPage from "./views/CartPage.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import ProtectRoute from "./components/ProtectRoute.jsx";
 import GuestRoute from "./components/GuestRoute.jsx";
+import ProfilePage from "./views/ProfilePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
           { path: "order", element: <ConfirmOrderView /> },
           { path: "dashboard", element: <DashBoardView /> },
           { path: "checkout", element: <ConfirmOrderView /> },
+          { path: "profile", element: <ProfilePage /> },
           { path: "carttest", element: <CartPage /> },
           {
             path: "pang-test",
