@@ -15,6 +15,22 @@ export default function ProfileOverview() {
   const [saving, setSaving] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
+  // ✅ TOAST (local state)
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success", // success | error
+  });
+
+  const showToast = (message, type = "success") => {
+    setToast({ show: true, message, type });
+
+    // auto close
+    setTimeout(() => {
+      setToast({ show: false, message: "", type });
+    }, 2500);
+  };
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -23,11 +39,12 @@ export default function ProfileOverview() {
     setSaving(true);
     try {
       await updateProfile(user._id, form);
-      await checkAuth(); // 🔁 sync user
+      await checkAuth();
       setEditMode(false);
+      showToast("Profile updated successfully ✨", "success");
     } catch (err) {
       console.error(err);
-      alert("Update failed");
+      showToast("Update failed ❌", "error");
     } finally {
       setSaving(false);
     }
@@ -38,97 +55,150 @@ export default function ProfileOverview() {
     const res = await hdlLogout();
 
     if (res.success) {
-      navigate("/");
+      showToast("Logged out successfully 👋", "success");
+      setTimeout(() => navigate("/"), 800);
     } else {
-      alert("Logout failed");
+      showToast("Logout failed ❌", "error");
     }
 
     setLoggingOut(false);
   };
 
   return (
-    <div className="bg-white shadow rounded-lg p-6 space-y-8">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold">My Profile</h2>
-        {!editMode && (
-          <button
-            className="text-sm px-4 py-1 border hover:bg-gray-100 rounded hover:cursor-pointer"
-            onClick={() => setEditMode(true)}
-          >
-            Edit
-          </button>
-        )}
-      </div>
-
-      {/* First name */}
-      <div>
-        <p className="text-sm text-gray-500">First name</p>
-        {editMode ? (
-          <input
-            name="first_name"
-            value={form.first_name}
-            onChange={handleChange}
-            className="border px-3 py-2 rounded w-full"
-          />
-        ) : (
-          <p>{user.first_name}</p>
-        )}
-      </div>
-
-      {/* Last name */}
-      <div>
-        <p className="text-sm text-gray-500">Last name</p>
-        {editMode ? (
-          <input
-            name="last_name"
-            value={form.last_name}
-            onChange={handleChange}
-            className="border px-3 py-2 rounded w-full"
-          />
-        ) : (
-          <p>{user.last_name}</p>
-        )}
-      </div>
-
-      {/* Email */}
-      <div>
-        <p className="text-sm text-gray-500">Email</p>
-        <p className="text-gray-700">{user.email}</p>
-      </div>
-
-      {/* Action buttons */}
-      {editMode ? (
-        <div className="flex gap-3">
-          <button
-            className="px-4 py-2 bg-black hover:bg-gray-500 text-white rounded hover:cursor-pointer"
-            onClick={handleSave}
-            disabled={saving}
-          >
-            {saving ? "Saving..." : "Save"}
-          </button>
-          <button
-            className="px-4 py-2 border rounded hover:cursor-pointer hover:bg-gray-100"
-            onClick={() => setEditMode(false)}
-          >
-            Cancel
-          </button>
-        </div>
-      ) : (
-        <div className="pt-6 border-t flex justify-between items-center">
-          <p className="text-sm text-gray-400">
-            Logged in as <span className="font-medium">{user.email}</span>
-          </p>
-
-          <button
-            onClick={handleLogout}
-            disabled={loggingOut}
-            className="px-4 py-2 border border-red-500 text-red-500 rounded hover:bg-red-50 hover:cursor-pointer"
-          >
-            {loggingOut ? "Logging out..." : "Logout"}
-          </button>
+    <>
+      {/* 🔔 TOAST */}
+      {toast.show && (
+        <div
+          className={`
+            fixed bottom-6 right-6 z-50
+            px-5 py-3 rounded-xl shadow-lg
+            text-sm font-medium
+            transition-all duration-300
+            ${
+              toast.type === "success"
+                ? "bg-white text-primary"
+                : "bg-red-500 text-white"
+            }
+          `}
+        >
+          {toast.message}
         </div>
       )}
-    </div>
+
+      {/* CARD */}
+      <div
+        className="
+          bg-white rounded-2xl p-6 sm:p-8
+          shadow-sm border
+          max-w-md mx-auto
+          transition-all duration-300
+        "
+      >
+        {/* Header + Avatar */}
+        <div className="flex items-center gap-4 pb-4 border-b">
+          <div className="
+            w-14 h-14 rounded-full
+            bg-gray-200
+            flex items-center justify-center
+            text-lg font-semibold text-gray-600
+          ">
+            {user.first_name?.[0]}
+          </div>
+
+          <div className="flex-1">
+            <h2 className="text-xl font-semibold text-primary">My Profile</h2>
+            <p className="text-sm text-gray-500">
+              Personal information
+            </p>
+          </div>
+
+          {!editMode && (
+            <button
+              onClick={() => setEditMode(true)}
+              className="text-sm px-3 py-1.5 border rounded-full hover:bg-gray-100 hover:cursor-pointer"
+            >
+              Edit
+            </button>
+          )}
+        </div>
+
+        {/* Body */}
+        <div className="mt-6 space-y-5">
+          <div>
+            <label className="text-xs text-gray-400 uppercase">
+              First name
+            </label>
+            {editMode ? (
+              <input
+                name="first_name"
+                value={form.first_name}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-2"
+              />
+            ) : (
+              <p>{user.first_name}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="text-xs text-gray-400 uppercase">
+              Last name
+            </label>
+            {editMode ? (
+              <input
+                name="last_name"
+                value={form.last_name}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-2"
+              />
+            ) : (
+              <p>{user.last_name}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="text-xs text-gray-400 uppercase">
+              Email
+            </label>
+            <p className="bg-gray-50 px-4 py-2 rounded-lg">
+              {user.email}
+            </p>
+          </div>
+        </div>
+
+        {/* Actions */}
+        {editMode ? (
+          <div className="flex gap-3 pt-6">
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="flex-1 bg-primary hover:opacity-70 text-white py-2 rounded-lg hover:cursor-pointer"
+            >
+              {saving ? "Saving..." : "Save"}
+            </button>
+            <button
+              onClick={() => setEditMode(false)}
+              className="flex-1 border py-2 rounded-lg hover:cursor-pointer hover:bg-gray-100"
+            >
+              Cancel
+            </button>
+          </div>
+        ) : (
+          <div className="mt-8 pt-6 border-t flex justify-between items-center">
+            <p className="text-sm text-gray-400">
+              Logged in as {user.email}
+            </p>
+            <button
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="text-sm border border-red-500 text-red-600 px-4 py-2 rounded-lg
+              hover:cursor-pointer hover:bg-red-50"
+            >
+              {loggingOut ? "Logging out..." : "Logout"}
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
