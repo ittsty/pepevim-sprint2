@@ -2,7 +2,7 @@ import { useCart } from "@/contexts/cartContext";
 
 
 export function AddToCartButton({ product }) {
-  const { addToCart } = useCart
+  const { addToCart } = useCart();
 
   return (
     <button
