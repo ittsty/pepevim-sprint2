@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeView from "./views/HomeView.jsx";
 import { AboutUsView } from "./views/AboutUsView.jsx";
 import Layout from "./views/Layout.jsx";
-import { SingupView } from "./views/SignupView.jsx";
+import { SignupView } from "./views/SignupView.jsx";
 import PaymentView from "./views/PaymentView.jsx";
 import LoginView from "./views/LoginView.jsx";
 import { ContactView } from "./views/ContactView.jsx";
@@ -14,7 +14,11 @@ import CollectionView from "./views/Collection/CollectionView.jsx";
 import ProductView from "./views/Collection/ProductView.jsx";
 import ProductDetailView from "./views/Collection/ProductDetailView.jsx";
 import ConfirmOrderView from "./views/ConfirmOrderView.jsx";
-import DashBoardView from "./views/DashBoardView.jsx";
+import DashBoardView2 from "./views/DashBoardView2.jsx";
+import CartPage from "./views/CartPage.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
+import GuestRoute from "./components/GuestRoute.jsx";
+import ProfilePage from "./views/ProfilePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,15 +37,31 @@ const router = createBrowserRouter([
           { path: "/", element: <HomeView /> },
           { path: "collection", element: <CollectionView /> },
           { path: "collection/:id", element: <ProductView /> },
-          { path: "product/:id", element: <ProductDetailView /> },
+          { path: "products/:id", element: <ProductDetailView /> },
+          { path: "dashboard", element: <DashBoardView2 /> },
           { path: "about", element: <AboutUsView /> },
           { path: "contact", element: <ContactView /> },
-          { path: "login", element: <LoginView /> },
-          { path: "signup", element: <SingupView /> },
+          {
+            path: "login",
+            element: (
+              <GuestRoute>
+                <LoginView />
+              </GuestRoute>
+            ),
+          },
+          {
+            path: "signup",
+            element: (
+              <GuestRoute>
+                <SignupView />
+              </GuestRoute>
+            ),
+          },
           { path: "payment", element: <PaymentView /> },
           { path: "order", element: <ConfirmOrderView /> },
-          { path: "dashboard", element: <DashBoardView/> },
           { path: "checkout", element: <ConfirmOrderView /> },
+          { path: "profile", element: <ProfilePage /> },
+          { path: "cart", element: <CartPage /> },
         ],
       },
     ],
@@ -49,5 +69,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <StrictMode>
+    <AuthProvider>
+      <RouterProvider router={router} />,
+    </AuthProvider>
+  </StrictMode>,
 );

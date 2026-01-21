@@ -1,6 +1,6 @@
 import CollectionCard from "@/components/CollectionCard";
 import Footer from "@/components/Footer";
-import Timer from "@/components/timer";
+import Timer from "@/components/Timer";
 
 export default function HomeView() {
   return (

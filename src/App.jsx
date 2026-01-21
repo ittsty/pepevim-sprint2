@@ -1,12 +1,13 @@
-import React from 'react';
 import { Outlet } from "react-router-dom";
+import { CartProvider } from "@/contexts/CartContext";
 
 function App() {
   return (
-    <main className="relative w-full min-h-screen">
-      {/* ตรงนี้จะดึงหน้า About หรือ Contact มาแสดงตาม URL */}
-      <Outlet />
-    </main>
+    <CartProvider>
+      <div className="h-screen">
+        <Outlet />
+      </div>
+    </CartProvider>
   );
 }
 

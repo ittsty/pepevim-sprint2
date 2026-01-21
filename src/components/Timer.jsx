@@ -1,4 +1,4 @@
-export default function CountdownTimer() {
+export default function Timer() {
 
   return (
     <div className="flex gap-4 text-white">
