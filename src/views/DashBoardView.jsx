@@ -84,22 +84,22 @@ const chartConfig2 = {
   },
 };
 
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+// import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
-const chartData3 = [
-  { month: "January", clothes: 186 },
-  { month: "February", clothes: 305 },
-  { month: "March", clothes: 237 },
-  { month: "April", clothes: 273 },
-  { month: "May", clothes: 209 },
-  { month: "June", clothes: 214 },
-];
-const chartConfig3 = {
-  clothes: {
-    label: "Clothes",
-    color: "#A71B79",
-  },
-};
+// const chartData3 = [
+//   { month: "January", clothes: 186 },
+//   { month: "February", clothes: 305 },
+//   { month: "March", clothes: 237 },
+//   { month: "April", clothes: 273 },
+//   { month: "May", clothes: 209 },
+//   { month: "June", clothes: 214 },
+// ];
+// const chartConfig3 = {
+//   clothes: {
+//     label: "Clothes",
+//     color: "#A71B79",
+//   },
+// };
 
 export function DashBoardView() {
   return (
@@ -158,7 +158,7 @@ export function DashBoardView() {
         </CardFooter>
       </Card>
 
-      <Card>
+      {/* <Card>
         <CardHeader className="items-center">
           <CardTitle>Radar Chart - Clothes</CardTitle>
           <CardDescription>
@@ -194,7 +194,7 @@ export function DashBoardView() {
             Showing total clothes orders for the last 6 months
           </div>
         </CardFooter>
-      </Card>
+      </Card> */}
 
 
     </ChartContainer>

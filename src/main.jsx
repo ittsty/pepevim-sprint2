@@ -14,7 +14,7 @@ import CollectionView from "./views/Collection/CollectionView.jsx";
 import ProductView from "./views/Collection/ProductView.jsx";
 import ProductDetailView from "./views/Collection/ProductDetailView.jsx";
 import ConfirmOrderView from "./views/ConfirmOrderView.jsx";
-import DashBoardView from "./views/DashBoardView.jsx";
+import DashBoardView2 from "./views/DashBoardView2.jsx";
 import Testpang from "./views/Testpang.jsx";
 import CartPage from "./views/CartPage.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
           { path: "collection", element: <CollectionView /> },
           { path: "collection/:id", element: <ProductView /> },
           { path: "products/:id", element: <ProductDetailView /> },
-          { path: "dashboard", element: <DashBoardView /> },
+          { path: "dashboard", element: <DashBoardView2 /> },
           { path: "about", element: <AboutUsView /> },
           { path: "contact", element: <ContactView /> },
           {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           },
           { path: "payment", element: <PaymentView /> },
           { path: "order", element: <ConfirmOrderView /> },
-          { path: "dashboard", element: <DashBoardView /> },
+          { path: "dashboard", element: <DashBoardView2 /> },
           { path: "checkout", element: <ConfirmOrderView /> },
           { path: "profile", element: <ProfilePage /> },
           { path: "carttest", element: <CartPage /> },
