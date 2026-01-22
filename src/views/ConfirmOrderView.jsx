@@ -9,6 +9,7 @@ export default function ConfirmOrderView() {
   const apibase = import.meta.env.VITE_API_URL;
   const [showSuccess, setShowSuccess] = useState(false);
   const { cart, totalPrice } = useCart();
+  const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -23,13 +24,20 @@ export default function ConfirmOrderView() {
   const inputClass =
     "w-full border border-[#E5B6C8] rounded-lg px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#CB5585] transition";
 
+  const validate = () => {
+    const newErrors = {};
+    if (cart.length === 0) newErrors.cart = "Your cart is empty";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!validate()) return;
     const payload = {
       items: cart.map((item) => ({
         _id: item._id,
@@ -59,13 +67,18 @@ export default function ConfirmOrderView() {
   };
   return (
     <>
-      <div className="min-h-screen bg-[#FFF3F8] px-10 py-12 grid grid-cols-2 gap-8">
+      <div
+  className="
+    min-h-screen bg-[#FFF3F8]
+    px-4 sm:px-6 md:px-10
+    py-6 md:py-12
+    grid grid-cols-1 lg:grid-cols-2
+    gap-6 lg:gap-8
+  "
+>
         {/* LEFT */}
         <div className="bg-white rounded-2xl shadow-md p-10 flex flex-col gap-12">
-          <form
-            id="order-form"
-            onSubmit={handleSubmit}
-          >
+          <form id="order-form" onSubmit={handleSubmit}>
             <section className="flex flex-col gap-6">
               <h2 className="text-3xl font-semibold">Delivery</h2>
 
@@ -80,12 +93,15 @@ export default function ConfirmOrderView() {
                   placeholder="First name"
                   className={inputClass}
                   onChange={handleChange}
+                  required 
                 />
+                
                 <input
                   name="lastName"
                   placeholder="Last name"
                   className={inputClass}
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -94,6 +110,7 @@ export default function ConfirmOrderView() {
                 placeholder="Address"
                 className={inputClass}
                 onChange={handleChange}
+                required
               />
 
               <input
@@ -107,18 +124,21 @@ export default function ConfirmOrderView() {
                   placeholder="City"
                   className={inputClass}
                   onChange={handleChange}
+                  required
                 />
                 <input
                   name="district"
                   placeholder="District"
                   className={inputClass}
                   onChange={handleChange}
+                  required
                 />
                 <input
                   name="postalCode"
                   placeholder="Postal code"
                   className={inputClass}
                   onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -127,10 +147,11 @@ export default function ConfirmOrderView() {
                 placeholder="Phone"
                 className={inputClass}
                 onChange={handleChange}
+                required
               />
             </section>
             <section className="flex flex-col gap-6">
-              <h2 className="text-3xl font-semibold">Payment</h2>
+              <h2 className="text-3xl font-semibold mt-4">Payment</h2>
 
               <p className="text-sm text-gray-500">
                 All transactions are secure and encrypted.
@@ -158,6 +179,7 @@ export default function ConfirmOrderView() {
         </div>
         {/* RIGHT */}
         <div className="bg-white rounded-2xl shadow-md p-10 flex flex-col gap-6">
+          {errors.cart && (<p className="text-red-500 text-sm text-center">{errors.cart}</p>)}
           <div className="grid grid-cols-3 text-gray-700 font-medium border-b pb-4">
             <span className="col-span-1">Order Summary</span>
             <span className="text-center">Qty</span>
@@ -183,7 +205,7 @@ export default function ConfirmOrderView() {
             </div>
           ))}
 
-          <div className="flex gap-3 mt-2">
+          <div className="flex flex-col md:flex-row gap-3 mt-2">
             <input
               placeholder="Coupon code"
               className="flex-1 border border-[#E5B6C8] rounded-lg px-4 py-3 bg-[#FFF3F8]"
@@ -232,7 +254,8 @@ export default function ConfirmOrderView() {
                 navigate("/");
                 clearCart();
               }}
-              className="mt-4 px-8 py-3 rounded-xl bg-[#CB5585] text-white hover:opacity-90 transition"
+              className={`w-full py-4 rounded-xl text-lg font-medium transition${cart.length === 0 ? "bg-gray-300 cursor-not-allowed" : "bg-[#CB5585] text-white hover:opacity-90"}`}
+              disabled={cart.length === 0}
             >
               Close
             </button>

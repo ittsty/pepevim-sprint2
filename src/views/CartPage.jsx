@@ -14,9 +14,9 @@ export default function CartPage() {
       {/* Title */}
       <h1 className="text-7xl font-bold px-20 py-16 text-gray-800">Cart</h1>
 
-      <div className="flex px-20 gap-12">
+      <div className="flex px-4 md:px-20 gap-12 flex-col md:flex-row">
         {/* LEFT: CART LIST */}
-        <div className="w-2/3 flex flex-col gap-6">
+        <div className="w-full md:w-2/3 flex flex-col gap-6">
           {/* Header */}
           <div className="grid grid-cols-3 text-gray-600 font-medium border-b border-[#E5B6C8] pb-4 px-4">
             <span>Product</span>
@@ -87,7 +87,7 @@ export default function CartPage() {
         </div>
 
         {/* RIGHT: SUMMARY */}
-        <div className="w-1/3 flex justify-center">
+        <div className="w-full md:w-1/3 flex justify-center">
           <div className="bg-[#CB5585] rounded-3xl shadow-lg p-8 w-full flex flex-col gap-8">
             <div className="flex justify-between text-white font-semibold text-xl">
               <span>รายการสั่งซื้อรวม</span>

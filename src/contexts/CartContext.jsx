@@ -4,7 +4,7 @@ const CartContext = createContext();
 const CART_KEY = "cart";
 
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState(() => {
+  const [cart, setCart] = useState(() => {
     try {
       const stored = localStorage.getItem(CART_KEY);
       return stored ? JSON.parse(stored) : [];
@@ -18,57 +18,60 @@ export function CartProvider({ children }) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product, quantity, size ) => {
-
-  const sizeData = product.sizes.find((s) => s.size === size);
-
-  const cartItem = {
-    _id: product._id,
-    productName: product.productName,
-    image: product.image,
-    size,
-    price: sizeData?.price ?? product.price,
-    quantity: quantity,
-  };
-
-
-  setCart((prev) => {
-    const exist = prev.find(
-      (item) => item._id === cartItem._id && item.size === cartItem.size
-    );
-
-    if (exist) {
-      return prev.map((item) =>
-        item._id === cartItem._id && item.size === cartItem.size
-          ? { ...item, quantity: item.quantity + cartItem.quantity }
-          : item
-      );
+  const addToCart = (product, quantity, size) => {
+    if (!size) {
+      alert("size is not selected");
+      return
     }
-      return [...prev,cartItem];
+    const sizeData = product.sizes.find((s) => s.size === size);
+
+    const cartItem = {
+      _id: product._id,
+      productName: product.productName,
+      image: product.image,
+      size,
+      price: sizeData?.price ?? product.price,
+      quantity: quantity,
+    };
+
+    setCart((prev) => {
+      const exist = prev.find(
+        (item) => item._id === cartItem._id && item.size === cartItem.size,
+      );
+
+      if (exist) {
+        return prev.map((item) =>
+          item._id === cartItem._id && item.size === cartItem.size
+            ? { ...item, quantity: item.quantity + cartItem.quantity }
+            : item,
+        );
+      }
+      return [...prev, cartItem];
     });
   };
 
-  const removeFromCart = (id,size) => {
-    setCart((prev) => prev.filter((item) => !(item._id == id && item.size == size)));
+  const removeFromCart = (id, size) => {
+    setCart((prev) =>
+      prev.filter((item) => !(item._id == id && item.size == size)),
+    );
   };
 
-  const updateQuantity = (id, size,qty) => {
-    if (qty <= 0) return removeFromCart(id,size);
+  const updateQuantity = (id, size, qty) => {
+    if (qty <= 0) return removeFromCart(id, size);
 
     setCart((prev) =>
       prev.map((item) =>
-        item._id === id && item.size === size ? { ...item, quantity: qty } : item
-      )
+        item._id === id && item.size === size
+          ? { ...item, quantity: qty }
+          : item,
+      ),
     );
   };
 
   const clearCart = () => setCart([]);
 
   const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
-  const totalPrice = cart.reduce(
-    (sum, i) => sum + i.price * i.quantity,
-    0
-  );
+  const totalPrice = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   return (
     <CartContext.Provider
