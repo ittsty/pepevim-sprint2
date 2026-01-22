@@ -94,7 +94,7 @@ export function DashBoardView() {
           <CardDescription>การสรุปยอดขายแยกตามหมวดหมู่รายเดือน</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={salesConfig} className="min-h-75 w-full">
+          <ChartContainer config={salesConfig} className="aspect-auto h-75 md:h-120 w-full">
             <BarChart accessibilityLayer data={salesData}>
               <CartesianGrid vertical={false} strokeDasharray="3 3" opacity={0.5} />
               <XAxis
@@ -122,7 +122,7 @@ export function DashBoardView() {
         <CardContent className="flex-1 pb-0">
           <ChartContainer
             config={collectionsConfig}
-            className="mx-auto aspect-square max-h-75 [&_.recharts-text]:fill-foreground"
+            className="mx-auto aspect-square h-70 sm:h-80 md:h-180"
           >
             <PieChart>
               <ChartTooltip
