@@ -80,9 +80,7 @@ export default function Navbar() {
           </li>
         </ul>
         <div className="ml-auto flex items-center gap-3">
-   
           <ButtonAccount />
-
           <NavLink
             to="/cart"
             end
