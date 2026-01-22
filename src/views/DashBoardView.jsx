@@ -22,42 +22,26 @@ import {
 } from "@/components/ui/card";
 
 const chartData = [
-<<<<<<< HEAD:src/views/DashBoardView.jsx
   { month: "January", clothes: 286, cosmetics: 180 },
   { month: "February", clothes: 305, cosmetics: 100 },
   { month: "March", clothes: 237, cosmetics: 120 },
   { month: "April", clothes: 173, cosmetics: 90 },
-=======
-  { month: "January", clothes: 186, cosmetics: 80 },
-  { month: "February", clothes: 305, cosmetics: 200 },
-  { month: "March", clothes: 237, cosmetics: 120 },
-  { month: "April", clothes: 73, cosmetics: 190 },
->>>>>>> develop:src/views/DashBoard.jsx
   { month: "May", clothes: 209, cosmetics: 130 },
   { month: "June", clothes: 214, cosmetics: 140 },
 ];
 
 const chartConfig = {
   clothes: {
-<<<<<<< HEAD:src/views/DashBoardView.jsx
     label: "Clothes",
     color: "#A71B79",
   },
   cosmetics: {
     label: "Cosmetics",
-=======
-    label: "clothes",
-    color: "#A71B79",
-  },
-  cosmetics: {
-    label: "cosmetics",
->>>>>>> develop:src/views/DashBoard.jsx
     color: "#E0C013",
   },
 };
 
 const chartData2 = [
-<<<<<<< HEAD:src/views/DashBoardView.jsx
   { browser: "collection1", collections: 275, fill: "var(--color-collection1)" },
   { browser: "collection2", collections: 200, fill: "var(--color-collection2)" },
   { browser: "collection3", collections: 187, fill: "var(--color-collection3)" },
@@ -65,19 +49,11 @@ const chartData2 = [
   { browser: "collection5", collections: 90, fill: "var(--color-collection5)" },
   { browser: "collection6", collections: 45, fill: "var(--color-collection6)" },
   { browser: "collection7", collections: 45, fill: "var(--color-collection7)" },
-=======
-  { browser: "social_media", visitors: 275, fill: "var(--color-social_media)" },
-  { browser: "search_engine", visitors: 200, fill: "var(--color-search_engine)" },
-  { browser: "content_marketing", visitors: 187, fill: "var(--color-content_marketing)" },
-  { browser: "email_marketing", visitors: 173, fill: "var(--color-email_marketing)" },
-  { browser: "affiliate", visitors: 90, fill: "var(--color-affiliate)" },
->>>>>>> develop:src/views/DashBoard.jsx
 ];
 const chartConfig2 = {
   collections: {
     label: "Collections",
   },
-<<<<<<< HEAD:src/views/DashBoardView.jsx
   collection1: {
     label: "collection1",
     color: "var(--chart-1)",
@@ -105,33 +81,11 @@ const chartConfig2 = {
    collection7: {
     label: "collection7",
     color: "var(--chart-4)",
-=======
-  social_media: {
-    label: "social_media",
-    color: "var(--chart-1)",
-  },
-  search_engine: {
-    label: "search_engine",
-    color: "#5AC8DA",
-  },
-  content_marketing: {
-    label: "content_marketing",
-    color: "#A71B79",
-  },
-  email_marketing: {
-    label: "email_marketing",
-    color: "#E0C013",
-  },
-  affiliate: {
-    label: "affiliate",
-    color: "var(--chart-5)",
->>>>>>> develop:src/views/DashBoard.jsx
   },
 };
 
 // import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
-<<<<<<< HEAD:src/views/DashBoardView.jsx
 // const chartData3 = [
 //   { month: "January", clothes: 186 },
 //   { month: "February", clothes: 305 },
@@ -146,33 +100,12 @@ const chartConfig2 = {
 //     color: "#A71B79",
 //   },
 // };
-=======
-const chartData3 = [
-  { month: "January", clothes: 186 },
-  { month: "February", clothes: 305 },
-  { month: "March", clothes: 237 },
-  { month: "April", clothes: 273 },
-  { month: "May", clothes: 209 },
-  { month: "June", clothes: 214 },
-];
-const chartConfig3 = {
-  clothes: {
-    label: "clothes",
-    color: "#A71B79",
-  },
-};
->>>>>>> develop:src/views/DashBoard.jsx
 
 export function DashBoardView() {
   return (
     <ChartContainer config={chartConfig} className="min-h-50 w-full">
-<<<<<<< HEAD:src/views/DashBoardView.jsx
       <h1 className="text-xl md:text-2xl font-bold text-center md:text-left px-4 py-4">
         Sales Order Summary
-=======
-      <h1 className="text-xl md:text-2xl font-bold text-center md:text-left">
-        VELVE' Analysis Dashboard
->>>>>>> develop:src/views/DashBoard.jsx
       </h1>
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
@@ -258,11 +191,7 @@ export function DashBoardView() {
             Trending up by 4.8% this month <TrendingUp className="h-4 w-4" />
           </div>
           <div className="text-muted-foreground flex items-center gap-2 leading-none">
-<<<<<<< HEAD:src/views/DashBoardView.jsx
             Showing total clothes orders for the last 6 months
-=======
-            Clothes on January - June 2025
->>>>>>> develop:src/views/DashBoard.jsx
           </div>
         </CardFooter>
       </Card> */}
