@@ -17,7 +17,7 @@ export const ContactView = () => {
             </p>
 
         <form className="space-y-6 text-left" onSubmit={handleSubmit}>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <div className='flex flex-col'>
                     <label className="text-sm font-bold mb-1">First Name</label>
                     <input 
@@ -68,7 +68,7 @@ export const ContactView = () => {
             </div>
              <button 
                 type='submit'
-                className="py-3 px-10 mx-56 mt-10 bg-secondary text-white rounded-full font-light hover:bg-black transition duration-100"
+                className="py-3 px-10 mx-auto block mt-10 bg-secondary text-white rounded-full font-light hover:bg-black transition duration-100"
              >
                 Sent Message
                 </button>

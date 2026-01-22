@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { contactApi } from "../api/contactApi";
+import { contactApi } from "../services/contact.js";
 
 export const usePost = ( ) => {
 
