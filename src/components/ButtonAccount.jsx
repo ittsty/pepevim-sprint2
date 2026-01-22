@@ -19,26 +19,28 @@ const ButtonAccount = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="">
-      <div
-        role="button"
-        onMouseEnter={hdlHover}
-        onMouseLeave={hdlLeave}
-        className="hidden md:block min-w-10"
+    <div
+      role="button"
+      onMouseEnter={hdlHover}
+      onMouseLeave={hdlLeave}
+      className="relative flex items-center"
+    >
+      <NavLink
+        to={user ? "/profile" : "/login"}
+        className={`
+    inline-flex items-center justify-center
+    text-white px-3 py-1
+    hover:bg-white hover:text-primary
+    transition 
+    ${user ? "border border-white rounded-md" : ""}
+  `}
       >
-        <button className=" w-5">
-          <NavLink
-            to={user ? "/profile" : "/login"}
-            className=" h-full aspect-square text-white p-1 ml-auto md:ml-0 max-w-1.5"
-          >
-            {user ? (
-              <span className="">{user?.first_name}</span>
-            ) : (
-              <FaUser className="w-[95%] h-[95%]" />
-            )}
-          </NavLink>
-        </button>
-      </div>
+        {user ? (
+          <span className="max-w-25 truncate ">{user?.first_name}</span>
+        ) : (
+          <FaUser size={22} />
+        )}
+      </NavLink>
 
       {user ? (
         <div type="button" className="md:hidden" onClick={hdlToggle}>

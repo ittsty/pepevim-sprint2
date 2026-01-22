@@ -54,22 +54,24 @@ export default function ProductDetailView() {
         <p className="pt-2">{product.productDesc}</p>
         <h2 className="text-xl pt-8 font-semibold">Size</h2>
         <div className="size-selector pt-2 flex gap-2">
-          {["S", "M", "L", "XL"].map((size) => (
-            <button
-              key={size}
-              onClick={() => setSelectedSize(size)}
-              className={`
-        border-2 py-2 px-3 rounded-lg
+          {product?.sizes
+            ?.filter((s) => s.status === "active") 
+            .map((s) => (
+              <button
+                key={s.size}
+                onClick={() => setSelectedSize(s.size)}
+                className={`
+        border-2 py-2 px-3 rounded-lg transition
         ${
-          selectedSize === size
+          selectedSize === s.size
             ? "bg-primary text-white border-primary"
-            : "border-primary text-primary"
+            : "border-primary text-primary hover:bg-primary/10"
         }
       `}
-            >
-              {size}
-            </button>
-          ))}
+              >
+                {s.size}
+              </button>
+            ))}
         </div>
         {!selectedSize && (
           <p className="text-red-500 text-sm mt-2">Please select a size</p>

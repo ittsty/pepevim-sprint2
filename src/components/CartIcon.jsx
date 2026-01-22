@@ -5,7 +5,7 @@ export function CartIcon() {
 
   return (
     <div className="relative">
-       <FaCartShopping className="w-full h-full" />
+       <FaCartShopping size={24} />
       {totalItems > 0 && (
         <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">
           {totalItems}
