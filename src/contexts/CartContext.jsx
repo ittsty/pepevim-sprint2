@@ -18,19 +18,33 @@ export function CartProvider({ children }) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product) => {
-    setCart((prev) => {
-      const exist = prev.find((item) => item._id === product._id && item.size===product.size);
-      console.log(product)
-      if (exist) {
-        return prev.map((item) =>
-          item._id === product._id && item.size === product.size
-            ? { ...item, quantity: item.quantity + product.quantity }
-            : item
-        );
-      }
+  const addToCart = (product, quantity, size ) => {
 
-      return [...prev,product];
+  const sizeData = product.sizes.find((s) => s.size === size);
+
+  const cartItem = {
+    _id: product._id,
+    productName: product.productName,
+    image: product.image,
+    size,
+    price: sizeData?.price ?? product.price,
+    quantity: quantity,
+  };
+
+
+  setCart((prev) => {
+    const exist = prev.find(
+      (item) => item._id === cartItem._id && item.size === cartItem.size
+    );
+
+    if (exist) {
+      return prev.map((item) =>
+        item._id === cartItem._id && item.size === cartItem.size
+          ? { ...item, quantity: item.quantity + cartItem.quantity }
+          : item
+      );
+    }
+      return [...prev,cartItem];
     });
   };
 

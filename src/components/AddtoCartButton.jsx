@@ -6,11 +6,7 @@ export function AddToCartButton({ product, quantity, size }) {
   return (
     <button
       onClick={() =>
-        addToCart({
-          ...product,
-          size: size,
-          quantity: quantity,
-        })
+        addToCart(product, quantity, size)
       }
       className="mt-4 border-primary border-2 p-4 w-8/10 mx-auto text-primary hover:bg-amber-50"
     >

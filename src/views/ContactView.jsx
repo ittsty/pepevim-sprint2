@@ -1,7 +1,76 @@
 import { useState } from "react";
+import { createContact } from "../services/contact";
 
 export const ContactView = () => {
   const [showSuccess, setShowSuccess] = useState(false);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      firstName: formData.firstName.trim(),
+      lastName: formData.lastName.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    };
+
+    try {
+      console.log("first");
+
+      if (
+        !payload.firstName ||
+        !payload.lastName ||
+        !payload.email ||
+        !payload.message
+      ) {
+        console.log("please fill in all fields");
+        return;
+      }
+
+      if (payload.firstName.trim().length < 2) {
+        console.log("first name must be at least 2 characters");
+        return;
+      }
+      if (payload.lastName.trim().length < 2) {
+        console.log("last name must be at least 2 characters");
+        return;
+      }
+      if (payload.message.trim().length < 2) {
+        console.log("message must be at least 2 characters");
+        return;
+      }
+
+      console.log("🚀 ~ handleSubmit ~ payload:", payload);
+      const result = await createContact(payload);
+      console.log("🚀 ~ handleSubmit ~ result:", result);
+
+      if (!result.success) {
+        console.log("Failed to send message.");
+        return;
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+    } finally {
+      setShowSuccess(true);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        message: "",
+      });
+    }
+  };
 
   const inputClass =
     "border-b border-pink-300 p-2 outline-none focus:border-[#CB5585] transition";
@@ -19,7 +88,10 @@ export const ContactView = () => {
             apparel.
           </p>
 
-          <form className="space-y-10 text-left">
+          <form
+            className="space-y-10 text-left"
+            onSubmit={(e) => handleSubmit(e)}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* First Name */}
               <div className="flex flex-col">
@@ -28,6 +100,9 @@ export const ContactView = () => {
                   type="text"
                   placeholder="First Name"
                   className={inputClass}
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -38,6 +113,9 @@ export const ContactView = () => {
                   type="text"
                   placeholder="Last Name"
                   className={inputClass}
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -48,6 +126,9 @@ export const ContactView = () => {
                   type="email"
                   placeholder="Email"
                   className={inputClass}
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -58,14 +139,16 @@ export const ContactView = () => {
                   type="text"
                   placeholder="Message"
                   className={inputClass}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                 />
               </div>
             </div>
 
             <div className="flex justify-center">
               <button
-                type="button"
-                onClick={() => setShowSuccess(true)}
+                type="submit"
                 className="py-3 px-12 mt-6 bg-[#CB5585] text-white rounded-full font-light hover:opacity-90 transition hover:cursor-pointer"
               >
                 Send Message

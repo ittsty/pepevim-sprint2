@@ -9,7 +9,7 @@ export function useCollection() {
 
   const fetchCollection = async () => {
     try {
-      const res = await axios.get(`${apibase}/api/v2/products`);
+      const res = await axios.get(`${apibase}/api/v2/collections`);
       setCollection(res.data.data);
     } catch (error) {
       console.log(error);
