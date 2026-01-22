@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-
 import { FaUser } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 
@@ -8,52 +7,60 @@ const ButtonAccount = () => {
   const { user, hdlLogout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const isOpenDropdown = user && isOpen;
-  const hdlHover = () => {
-    setIsOpen(true);
-  };
-  const hdlLeave = () => {
-    setIsOpen(false);
-  };
 
-  const hdlToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  const hdlHover = () => setIsOpen(true);
+  const hdlLeave = () => setIsOpen(false);
+  const hdlToggle = () => setIsOpen(!isOpen);
+
   return (
-    <div className="">
+    <div>
+      {/* ===== Desktop ===== */}
       <div
         role="button"
         onMouseEnter={hdlHover}
         onMouseLeave={hdlLeave}
-        className="hidden md:block min-w-10"
+        className="hidden md:flex items-center justify-center min-w-10"
       >
-        <button className=" w-5">
-          <NavLink
-            to={user ? "/profile" : "/login"}
-            className=" h-full aspect-square text-white p-1 ml-auto md:ml-0 max-w-1.5"
-          >
-            {user ? (
-              <span className="">{user?.first_name}</span>
-            ) : (
-              <FaUser className="w-[95%] h-[95%]" />
-            )}
-          </NavLink>
-        </button>
+        <NavLink
+          to={user ? "/profile" : "/login"}
+          className="h-6 max-w-20 flex items-center justify-center text-white"
+        >
+          {user ? (
+            <span
+              className="max-w-20 truncate text-[1rem] font-medium"
+              title={user?.first_name}
+            >
+              {user?.first_name}
+            </span>
+          ) : (
+            <FaUser className="w-5 h-5" />
+          )}
+        </NavLink>
       </div>
 
+      {/* ===== Mobile ===== */}
       {user ? (
-        <div type="button" className="md:hidden" onClick={hdlToggle}>
-          <div className="relative">
-            <FaUser className="w-[95%] h-[95%]" />
+        <div
+          type="button"
+          className="md:hidden h-full aspect-square flex items-center justify-center"
+          onClick={hdlToggle}
+        >
+          <div className="relative h-6 w-6 flex items-center justify-center text-white">
+            <FaUser className="w-full h-full" />
+
             {isOpenDropdown && (
-              <div className="absolute top-7 right-0 bg-white p-2 rounded-md shadow-md min-w-10 flex flex-col items-start">
-                <button type="button" className="text-nowrap text-primary">
-                  <NavLink to="/profile">Account</NavLink>
-                </button>
+              <div className="absolute top-8 right-0 bg-white p-3 rounded-xl shadow-lg min-w-30 flex flex-col gap-2">
+                <NavLink
+                  to="/profile"
+                  className="text-primary text-sm whitespace-nowrap"
+                >
+                  Account
+                </NavLink>
 
                 <button
                   type="button"
                   onClick={hdlLogout}
-                  className="text-red-500 text-nowrap"
+                  className="text-red-500 text-sm text-left whitespace-nowrap"
                 >
                   Logout
                 </button>
@@ -62,11 +69,14 @@ const ButtonAccount = () => {
           </div>
         </div>
       ) : (
-        <button type="button" className="md:hidden">
-          <NavLink to="/login">
-            <FaUser className="w-[95%] h-[95%]" />
+        <div className="md:hidden h-full aspect-square flex items-center justify-center">
+          <NavLink
+            to="/login"
+            className="h-6 w-6 flex items-center justify-center text-white"
+          >
+            <FaUser className="w-full h-full" />
           </NavLink>
-        </button>
+        </div>
       )}
     </div>
   );

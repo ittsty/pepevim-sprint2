@@ -61,14 +61,28 @@ export default function HomeView() {
           ))}
         </div>
       </section>
-      <section className="Collection h-full flex flex-col items-center p-12">
-        <h1 className="text-5xl font-bold pb-4">Other Collection</h1>
-        <div className="grid md:grid-cols-2 m-4 gap-16">
+      <section className="Collection h-full flex flex-col items-center p-20 bg-[#faf8f9]">
+        <h1 className="text-5xl font-bold pb-16 tracking-wide">
+          Other Collection
+        </h1>
+
+        <div className="grid md:grid-cols-2 gap-16">
           {products.slice(0, 4).map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <div
+              key={product._id}
+              className="
+          group
+          transition-all duration-700 ease-out
+          hover:-translate-y-2
+          hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)]
+        "
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </section>
+
       <Footer />
     </>
   );

@@ -80,7 +80,9 @@ export default function Navbar() {
         </li>
       </ul>
 
+   
       <ButtonAccount />
+
       <NavLink
         to="/cart"
         end
