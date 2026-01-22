@@ -53,10 +53,10 @@ export default function HomeView() {
           {collection.slice(0, 3).map((collection) => (
             <CollectionCard
               key={collection._id}
-              product={collection}
               className="md:h-100"
               id={collection._id}
               image={collection.image}
+              collectionName={collection.collectionName}
             />
           ))}
         </div>

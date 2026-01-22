@@ -19,6 +19,7 @@ export default function CollectionView() {
               className={"aspect-square"}
               id={collection._id}
               image={collection.image}
+              collectionName={collection.collectionName}
             />
           ))}
         </div>
