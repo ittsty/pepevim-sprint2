@@ -254,7 +254,7 @@ export default function ConfirmOrderView() {
                 navigate("/");
                 clearCart();
               }}
-              className={`w-full py-4 rounded-xl text-lg font-medium transition${cart.length === 0 ? "bg-gray-300 cursor-not-allowed" : "bg-[#CB5585] text-white hover:opacity-90"}`}
+              className={`w-full py-4 rounded-xl text-lg font-medium transition ${cart.length === 0 ? "bg-gray-300 cursor-not-allowed" : "bg-[#CB5585] text-white hover:opacity-90"}`}
               disabled={cart.length === 0}
             >
               Close
